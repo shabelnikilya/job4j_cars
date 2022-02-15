@@ -36,12 +36,12 @@ public class Driver {
         this.firstName = firstName;
     }
 
-    public String getSecond_name() {
+    public String getSecondName() {
         return secondName;
     }
 
-    public void setSecond_name(String second_name) {
-        this.secondName = second_name;
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
     }
 
     @Override
