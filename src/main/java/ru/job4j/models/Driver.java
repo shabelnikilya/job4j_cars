@@ -10,14 +10,14 @@ public class Driver {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String firstName;
-    private String second_name;
+    private String secondName;
 
     public Driver() {
     }
 
-    public Driver(String firstName, String second_name) {
+    public Driver(String firstName, String secondName) {
         this.firstName = firstName;
-        this.second_name = second_name;
+        this.secondName = secondName;
     }
 
     public int getId() {
@@ -36,12 +36,12 @@ public class Driver {
         this.firstName = firstName;
     }
 
-    public String getSecond_name() {
-        return second_name;
+    public String getSecondName() {
+        return secondName;
     }
 
-    public void setSecond_name(String second_name) {
-        this.second_name = second_name;
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
     }
 
     @Override
