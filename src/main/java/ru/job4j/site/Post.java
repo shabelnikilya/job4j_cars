@@ -1,8 +1,8 @@
 package ru.job4j.site;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,28 +13,28 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String description;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "car_id", foreignKey = @ForeignKey(name = "CAR_ID_FK"))
     private Car car;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Photo> photos = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "post")
+    private List<Photo> photos;
     private boolean status;
     @ManyToOne
     @JoinColumn(name = "account_id")
     private Account account;
-    private LocalDateTime created = LocalDateTime.now();
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created = new Date(System.currentTimeMillis());
 
     public Post() {
     }
 
     public Post(String description, Car car, List<Photo> photos,
-                boolean status, Account account, LocalDateTime created) {
+                boolean status, Account account) {
         this.description = description;
         this.car = car;
         this.photos = photos;
         this.status = status;
         this.account = account;
-        this.created = created;
     }
 
     public int getId() {
@@ -85,12 +85,15 @@ public class Post {
         this.account = account;
     }
 
-    public LocalDateTime getCreated() {
-        return created;
+    public void setCreated(Date created) {
+        this.created = created;
     }
 
-    public void setCreated(LocalDateTime created) {
-        this.created = created;
+    public void addPhoto(Photo photo) {
+        if (photos == null) {
+            photos = new ArrayList<>();
+        }
+        photos.add(photo);
     }
 
     @Override
@@ -108,5 +111,12 @@ public class Post {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Post{" + "description='" + description + '\''
+                + ", status=" + status + ", created=" + created
+                + '}';
     }
 }

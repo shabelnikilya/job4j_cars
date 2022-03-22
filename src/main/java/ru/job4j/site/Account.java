@@ -1,7 +1,7 @@
 package ru.job4j.site;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -15,7 +15,7 @@ public class Account {
     private String password;
     private boolean isAuthor;
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime created = LocalDateTime.now();
+    private Date created = new Date(System.currentTimeMillis());
 
     public Account() {
     }
@@ -67,11 +67,11 @@ public class Account {
         isAuthor = author;
     }
 
-    public LocalDateTime getCreated() {
+    public Date getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDateTime created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
 

@@ -10,6 +10,9 @@ public class Photo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String url;
+    @ManyToOne()
+    @JoinColumn(name = "post_id")
+    private Post post;
 
     public Photo() {
     }

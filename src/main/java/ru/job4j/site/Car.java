@@ -1,7 +1,7 @@
 package ru.job4j.site;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -11,7 +11,7 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime created = LocalDateTime.now();
+    private Date created = new Date(System.currentTimeMillis());
     @ManyToOne
     @JoinColumn(name = "brand_id")
     private Brand brand;
@@ -51,11 +51,11 @@ public class Car {
         this.bodyType = bodyType;
     }
 
-    public LocalDateTime getCreated() {
+    public Date getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDateTime created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
 

@@ -11,7 +11,7 @@ CREATE TABLE cars IF NOT EXISTS (
     id SERIAL PRIMARY KEY,
     created TIMESTAMP,
     brand_id INT NOT NULL REFERENCES brands(id),
-    body_types_id INT NOT NULL REFERENCES body_types(id),
+    body_type_id INT NOT NULL REFERENCES body_types(id),
 );
 CREATE TABLE accounts IF NOT EXISTS (
     id SERIAL PRIMARY KEY,
